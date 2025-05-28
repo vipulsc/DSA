@@ -92,6 +92,39 @@ void postorder(node* root)
 	cout<<root->data<<" ";
 }
 
+node* buildFromLevel(node* root)
+{
+	queue<node*>q;
+	cout<<"Enter data for root"<<endl;
+	int data;
+	cin>>data;
+	root=new node(data);
+	q.push(root);
+	while(!q.empty())
+	{
+		node* temp=q.front();
+		q.pop();
+
+		cout<<"Enter left node for: "<<temp->data<<endl;
+		int leftdata;
+		cin>>leftdata;
+		if(leftdata!=-1)
+		{
+			temp->left=new node(leftdata);
+			q.push(temp->left);
+		}
+		cout<<"Enter left node for: "<<temp->data<<endl;
+		int rightdata;
+		cin>>rightdata;
+		if(rightdata!=-1)
+		{
+			temp->right=new node(rightdata);
+			q.push(temp->right);
+		}
+
+	}
+	return root;
+}
 
 int main()
 {
@@ -102,5 +135,4 @@ int main()
 	inorder(root);
 	preorder(root);
 	postorder(root);
-
 }
